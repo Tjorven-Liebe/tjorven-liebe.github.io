@@ -78,6 +78,7 @@ const ALGORITHM_LOADERS: Record<string, () => Promise<Algorithm>> = {
   // Graphs
   bfs: () => import('./graphs?algorithm=bfs').then(readDefaultAlgorithm),
   dfs: () => import('./graphs?algorithm=dfs').then(readDefaultAlgorithm),
+  iddfs: () => import('./graphs?algorithm=iddfs').then(readDefaultAlgorithm),
   dijkstra: () => import('./graphs?algorithm=dijkstra').then(readDefaultAlgorithm),
   prim: () => import('./graphs?algorithm=prim').then(readDefaultAlgorithm),
   'topological-sort': () => import('./graphs?algorithm=topologicalSort').then(readDefaultAlgorithm),

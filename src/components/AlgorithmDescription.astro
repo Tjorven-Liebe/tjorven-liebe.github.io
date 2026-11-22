@@ -71,7 +71,7 @@ for (let index = 0; index < lines.length; index++) {
 const difficultyStyle = difficultyPresentation[difficulty]
 const related = algorithm ? getRelatedAlgorithms(algorithm, 6) : []
 const faqs = algorithm ? buildAlgorithmFaqs(locale, algorithm, description) : []
-const isEs = locale === "es"
+const isDe = locale === "de"
 ---
 
 <article
@@ -140,7 +140,7 @@ const isEs = locale === "es"
     related.length > 0 && (
       <section class="mt-6 pt-4 border-t border-white/8">
         <h3 class="text-sm font-semibold text-neutral-200 mb-2 font-heading">
-          {isEs ? "Algoritmos relacionados" : "Related algorithms"}
+          {isDe ? "Verwandte Algorithmen" : "Related algorithms"}
         </h3>
         <ul class="list-none m-0 p-0 flex flex-wrap gap-1.5">
           {related.map((item) => (
@@ -162,7 +162,7 @@ const isEs = locale === "es"
     faqs.length > 0 && (
       <section class="mt-6 pt-4 border-t border-white/8">
         <h3 class="text-sm font-semibold text-neutral-200 mb-3 font-heading">
-          {isEs ? "Preguntas frecuentes" : "Frequently asked questions"}
+          {isDe ? "Häufig gestellte Fragen" : "Frequently asked questions"}
         </h3>
         <dl class="space-y-3 m-0">
           {faqs.map((item) => (

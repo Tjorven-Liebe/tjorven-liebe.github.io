@@ -49,7 +49,7 @@ const bootstrapJson = JSON.stringify({ locale, algorithm, steps }).replace(/</g,
   >
       <h1 class="sr-only" data-algo-sr-title>
         {algorithm.name} —{" "}
-        {locale === "es" ? "Visualizador de algoritmos" : "Algorithm Visualizer"}
+        {locale === "de" ? "Algorithmen-Visualisierer" : "Algorithm Visualizer"}
       </h1>
 
       <section
@@ -133,7 +133,7 @@ const bootstrapJson = JSON.stringify({ locale, algorithm, steps }).replace(/</g,
         description ? (
           <section
             class="flex-1 min-h-[160px] flex flex-col border-t border-white/8"
-            aria-label={locale === "es" ? "Explicación" : "Explanation"}
+            aria-label={locale === "de" ? "Erklärung" : "Explanation"}
             data-algorithm-explanation
           >
             <header class="shrink-0 flex items-center gap-2.5 px-4 py-3 md:px-6 border-b border-white/8">
@@ -162,9 +162,9 @@ const bootstrapJson = JSON.stringify({ locale, algorithm, steps }).replace(/</g,
                 class="ml-auto shrink-0 inline-flex size-7 items-center justify-center rounded-md text-neutral-500 hover:text-white hover:bg-white/6 transition-colors"
                 aria-expanded="true"
                 aria-controls="algorithm-explanation-body"
-                aria-label={locale === "es" ? "Minimizar explicación" : "Minimize explanation"}
-                data-label-expand={locale === "es" ? "Mostrar explicación" : "Show explanation"}
-                data-label-collapse={locale === "es" ? "Minimizar explicación" : "Minimize explanation"}
+                aria-label={locale === "de" ? "Erklärung minimieren" : "Minimize explanation"}
+                data-label-expand={locale === "de" ? "Erklärung anzeigen" : "Show explanation"}
+                data-label-collapse={locale === "de" ? "Erklärung minimieren" : "Minimize explanation"}
                 data-algorithm-explanation-toggle
               >
                 <svg

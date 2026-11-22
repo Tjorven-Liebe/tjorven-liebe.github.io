@@ -21,7 +21,7 @@ const maybeLocale = pathName.split("/")[1] as Locale
 const locale = locales.includes(maybeLocale) ? maybeLocale : defaultLocale
 const t = translations[locale]
 const homeHref = getHomeUrl(locale)
-const isEs = locale === "es"
+const isDe = locale === "de"
 
 const POPULAR_IDS = [
   "bubble-sort",
@@ -64,7 +64,7 @@ const catalogJson = JSON.stringify(
       <a
         href={homeHref}
         class="flex items-center gap-2 hover:opacity-80 transition-opacity duration-150"
-        aria-label={isEs ? "Visualizador de algoritmos — Inicio" : "Algorithm Visualizer — Home"}
+        aria-label={isDe ? "Algorithmen-Visualisierer — Startseite" : "Algorithm Visualizer — Home"}
       >
         <div class="header-logo w-6 h-6 rounded-md flex items-center justify-center shrink-0">
           <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" aria-hidden="true">
@@ -87,7 +87,7 @@ const catalogJson = JSON.stringify(
           </svg>
         </div>
         <span class="text-sm font-semibold tracking-tight font-heading">
-          {isEs ? "Visualizador de algoritmos" : "Algorithm Visualizer"}
+          {isDe ? "Algorithmen-Visualisierer" : "Algorithm Visualizer"}
         </span>
       </a>
     </header>
@@ -314,7 +314,7 @@ const catalogJson = JSON.stringify(
 
   function pathSlug(pathname: string): string {
     const parts = pathname.replace(/\/+$/, '').split('/').filter(Boolean)
-    if (parts[0] === 'es' || parts[0] === 'en') parts.shift()
+    if (parts[0] === 'de' || parts[0] === 'en') parts.shift()
     return parts.join(' ') || parts[parts.length - 1] || ''
   }
 

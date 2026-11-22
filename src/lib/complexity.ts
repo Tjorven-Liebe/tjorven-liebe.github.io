@@ -69,15 +69,15 @@ function parseTimeComplexity(description: string): ComplexityEntry[] {
   const entries: ComplexityEntry[] = []
 
   const idxEn = description.indexOf('Time Complexity')
-  const idxEs = description.indexOf('Complejidad Temporal')
-  const idx = idxEn !== -1 ? idxEn : idxEs
+  const idxDe = description.indexOf('Zeitkomplexität')
+  const idx = idxEn !== -1 ? idxEn : idxDe
   if (idx === -1) return entries
 
-  const isSpanish = idxEs !== -1 && (idxEn === -1 || idxEs < idxEn)
+  const isGerman = idxDe !== -1 && (idxEn === -1 || idxDe < idxEn)
 
   const rest = description.slice(idx)
-  const blockRe = isSpanish
-    ? /Complejidad Temporal[:\s]*([\s\S]*?)(?=\n\s*\nComplejidad Espacial|\n\s*\nPropiedades|\n\s*\n[A-ZÁÉÍÓÚÑ]|$)/
+  const blockRe = isGerman
+    ? /Zeitkomplexität[:\s]*([\s\S]*?)(?=\n\s*\nRaumkomplexität|\n\s*\nEigenschaften|\n\s*\n[A-ZÄÖÜ]|$)/
     : /Time Complexity[:\s]*([\s\S]*?)(?=\n\s*\nSpace|\n\s*\nProperties|\n\s*\n[A-Z]|$)/
   const blockMatch = rest.match(blockRe)
   if (!blockMatch) return entries
@@ -85,16 +85,16 @@ function parseTimeComplexity(description: string): ComplexityEntry[] {
 
   const oRe = (prefix: string) => new RegExp(`${prefix}:\\s*(O\\((?:[^()]+|\\([^)]*\\))*\\))`, 'i')
 
-  const best = block.match(oRe(isSpanish ? 'Mejor' : 'Best'))
-  const avg = block.match(oRe(isSpanish ? 'Promedio' : 'Average'))
-  const worst = block.match(oRe(isSpanish ? 'Peor' : 'Worst'))
+  const best = block.match(oRe(isGerman ? 'Bester Fall' : 'Best'))
+  const avg = block.match(oRe(isGerman ? 'Durchschnittlicher Fall' : 'Average'))
+  const worst = block.match(oRe(isGerman ? 'Schlechtester Fall' : 'Worst'))
 
   if (best || avg || worst) {
     if (best) {
       const k = normalizeToKey(best[1])
       if (k) {
         entries.push({
-          label: isSpanish ? 'Mejor' : 'Best',
+          label: isGerman ? 'Bester' : 'Best',
           raw: best[1],
           key: k,
           color: '#34d399',
@@ -104,14 +104,19 @@ function parseTimeComplexity(description: string): ComplexityEntry[] {
     if (avg) {
       const k = normalizeToKey(avg[1])
       if (k) {
-        entries.push({ label: isSpanish ? 'Prom' : 'Avg', raw: avg[1], key: k, color: '#fbbf24' })
+        entries.push({
+          label: isGerman ? 'Durchschn.' : 'Avg',
+          raw: avg[1],
+          key: k,
+          color: '#fbbf24',
+        })
       }
     }
     if (worst) {
       const k = normalizeToKey(worst[1])
       if (k) {
         entries.push({
-          label: isSpanish ? 'Peor' : 'Worst',
+          label: isGerman ? 'Schlecht.' : 'Worst',
           raw: worst[1],
           key: k,
           color: '#f87171',
@@ -257,8 +262,8 @@ export function buildComplexityChart(
     })
   }
 
-  const isSpanish = locale === 'es'
-  const chartTitle = isSpanish ? 'Complejidad temporal' : 'Time complexity'
+  const isGerman = locale === 'de'
+  const chartTitle = isGerman ? 'Zeitkomplexität' : 'Time complexity'
 
   return {
     entries,
@@ -273,7 +278,7 @@ export function buildComplexityChart(
       areaPath: buildAreaPath(COMPLEXITY_FNS[key]),
     })),
     labels: resolveOverlaps(labels, 11),
-    heading: isSpanish ? 'Complejidad Temporal' : 'Time Complexity',
+    heading: isGerman ? 'Zeitkomplexität' : 'Time Complexity',
     ariaLabel: `${chartTitle}: ${entries
       .map((e) => (e.label ? `${e.label} ${e.raw}` : e.raw))
       .join(', ')}`,

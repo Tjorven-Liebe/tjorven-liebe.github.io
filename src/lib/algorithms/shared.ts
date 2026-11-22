@@ -1,7 +1,7 @@
 import type { GraphNode, GraphEdge } from '@lib/types'
 
 /** Locale-aware description helper */
-export const d = (locale: string, en: string, es: string) => (locale === 'es' ? es : en)
+export const d = (locale: string, en: string, de: string) => (locale === 'de' ? de : en)
 
 /** Shared graph data for BFS/DFS */
 export const graphNodes: GraphNode[] = [

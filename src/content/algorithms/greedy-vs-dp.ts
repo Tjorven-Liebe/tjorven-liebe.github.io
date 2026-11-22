@@ -20,25 +20,25 @@ Dynamic Programming:
 Example — Coin Change with coins [1, 4, 6], amount 8:
   Greedy picks 6+1+1 = 3 coins (suboptimal!)
   DP finds 4+4 = 2 coins (optimal!)`,
-  es: `Greedy vs Programación Dinámica
+  de: `Greedy vs Dynamic Programming
 
-Tanto Greedy como DP resuelven problemas de optimización, pero difieren fundamentalmente:
+Both Greedy and DP solve optimization problems, but they differ fundamentally:
 
-Greedy (Voraz):
-  - Elige la opción localmente óptima en cada paso
-  - Rápido: generalmente O(n log n) u O(n)
-  - NO siempre encuentra el óptimo global
-  - Funciona cuando se cumple la "propiedad de elección voraz"
+Greedy:
+  - Makes the locally optimal choice at each step
+  - Fast: usually O(n log n) or O(n)
+  - Does NOT always find the global optimum
+  - Works when the "greedy choice property" holds
 
-Programación Dinámica:
-  - Considera TODAS las opciones posibles
-  - Encuentra la solución globalmente óptima — siempre
-  - Más lento: generalmente O(n × m) en tiempo y espacio
-  - Funciona para problemas con subproblemas superpuestos
+Dynamic Programming:
+  - Considers ALL possible choices
+  - Finds the globally optimal solution — always
+  - Slower: usually O(n × m) time and space
+  - Works for problems with overlapping subproblems
 
-Ejemplo — Cambio de monedas con [1, 4, 6], cantidad 8:
-  Greedy elige 6+1+1 = 3 monedas (¡subóptimo!)
-  DP encuentra 4+4 = 2 monedas (¡óptimo!)`,
+Example — Coin Change with coins [1, 4, 6], amount 8:
+  Greedy picks 6+1+1 = 3 coins (suboptimal!)
+  DP finds 4+4 = 2 coins (optimal!)`,
 }
 
 export default descriptions

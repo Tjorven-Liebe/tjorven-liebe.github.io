@@ -63,13 +63,13 @@ export function getHomeStructuredData(locale: Locale, canonicalURL: string) {
       },
       {
         '@type': 'ItemList',
-        name: locale === 'es' ? 'Visualizaciones de algoritmos' : 'Algorithm visualizations',
+        name: locale === 'de' ? 'Algorithmen-Visualisierungen' : 'Algorithm visualizations',
         numberOfItems: algorithmCatalog.length,
         itemListElement: algorithmCatalog.map((algorithm, index) => ({
           '@type': 'ListItem',
           position: index + 1,
           name: algorithm.name,
-          url: new URL(locale === 'es' ? `/es/${algorithm.id}/` : `/${algorithm.id}/`, canonicalURL)
+          url: new URL(locale === 'de' ? `/de/${algorithm.id}/` : `/${algorithm.id}/`, canonicalURL)
             .href,
         })),
       },
@@ -83,7 +83,7 @@ export function getCategoryStructuredData(
   categorySlug: string,
   canonicalURL: string,
 ) {
-  const homeURL = new URL(locale === 'es' ? '/es/' : '/', canonicalURL).href
+  const homeURL = new URL(locale === 'de' ? '/de/' : '/', canonicalURL).href
   const label = getCategoryName(locale, category.name)
 
   return {
@@ -110,7 +110,7 @@ export function getCategoryStructuredData(
             position: index + 1,
             name: algorithm.name,
             url: new URL(
-              locale === 'es' ? `/es/${algorithm.id}/` : `/${algorithm.id}/`,
+              locale === 'de' ? `/de/${algorithm.id}/` : `/${algorithm.id}/`,
               canonicalURL,
             ).href,
           })),
@@ -122,7 +122,7 @@ export function getCategoryStructuredData(
           {
             '@type': 'ListItem',
             position: 1,
-            name: locale === 'es' ? 'Inicio' : 'Home',
+            name: locale === 'de' ? 'Startseite' : 'Home',
             item: homeURL,
           },
           {
@@ -139,8 +139,8 @@ export function getCategoryStructuredData(
           {
             '@type': 'Question',
             name:
-              locale === 'es'
-                ? `¿Qué algoritmos de ${label} puedo visualizar?`
+              locale === 'de'
+                ? `Welche ${label}-Algorithmen kann ich visualisieren?`
                 : `Which ${label} algorithms can I visualize?`,
             acceptedAnswer: {
               '@type': 'Answer',
@@ -150,14 +150,14 @@ export function getCategoryStructuredData(
           {
             '@type': 'Question',
             name:
-              locale === 'es'
-                ? `¿Cuántos algoritmos hay en ${label}?`
+              locale === 'de'
+                ? `Wie viele Algorithmen gibt es in ${label}?`
                 : `How many algorithms are in ${label}?`,
             acceptedAnswer: {
               '@type': 'Answer',
               text:
-                locale === 'es'
-                  ? `Hay ${category.algorithms.length} visualizaciones en la categoría ${label}.`
+                locale === 'de'
+                  ? `Es gibt ${category.algorithms.length} Visualisierungen in der Kategorie ${label}.`
                   : `There are ${category.algorithms.length} visualizations in the ${label} category.`,
             },
           },
@@ -175,10 +175,10 @@ export function getAlgorithmStructuredData(
 ) {
   const { title } = parseAlgorithmDescription(description)
   const name = title || algorithm.name
-  const homeURL = new URL(locale === 'es' ? '/es/' : '/', canonicalURL).href
+  const homeURL = new URL(locale === 'de' ? '/de/' : '/', canonicalURL).href
   const categorySlug = getCategorySlug(algorithm.category)
   const categoryURL = categorySlug
-    ? new URL(locale === 'es' ? `/es/${categorySlug}/` : `/${categorySlug}/`, canonicalURL).href
+    ? new URL(locale === 'de' ? `/de/${categorySlug}/` : `/${categorySlug}/`, canonicalURL).href
     : homeURL
   const categoryLabel = getCategoryName(locale, algorithm.category)
   const faqs = buildAlgorithmFaqs(locale, algorithm, description)
@@ -195,7 +195,7 @@ export function getAlgorithmStructuredData(
         url: canonicalURL,
         inLanguage: locale,
         learningResourceType:
-          locale === 'es' ? 'Visualización interactiva' : 'Interactive visualization',
+          locale === 'de' ? 'Interaktive Visualisierung' : 'Interactive visualization',
         educationalLevel: schemaEducationalLevel(algorithm.difficulty),
         isAccessibleForFree: true,
         dateModified: getContentDates().get(algorithm.id) ?? CONTENT_DATE_MODIFIED,
@@ -216,7 +216,7 @@ export function getAlgorithmStructuredData(
           {
             '@type': 'ListItem',
             position: 1,
-            name: locale === 'es' ? 'Inicio' : 'Home',
+            name: locale === 'de' ? 'Startseite' : 'Home',
             item: homeURL,
           },
           {

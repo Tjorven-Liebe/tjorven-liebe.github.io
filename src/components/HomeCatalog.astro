@@ -16,7 +16,7 @@ interface Props {
 
 const { locale } = Astro.props
 const t = translations[locale]
-const isEs = locale === "es"
+const isDe = locale === "de"
 
 const POPULAR_IDS = [
   "bubble-sort",
@@ -37,10 +37,10 @@ const popular = POPULAR_IDS.map((id) => algorithmCatalog.find((a) => a.id === id
 <section
   class="w-full max-w-2xl mx-auto shrink-0 px-1 pt-2 pb-1"
   data-home-catalog
-  aria-label={isEs ? "Explorar algoritmos" : "Explore algorithms"}
+  aria-label={isDe ? "Algorithmen erkunden" : "Explore algorithms"}
 >
   <h2 class="sr-only">
-    {isEs ? "Explorar algoritmos por categoría" : "Explore algorithms by category"}
+    {isDe ? "Algorithmen nach Kategorie erkunden" : "Explore algorithms by category"}
   </h2>
 
   <!-- Category hubs: compact pills with sidebar icon + color -->
@@ -82,10 +82,10 @@ const popular = POPULAR_IDS.map((id) => algorithmCatalog.find((a) => a.id === id
   <!-- Popular deep links (crawlable) -->
   <nav
     class="flex flex-wrap items-center justify-center gap-x-3 gap-y-2 text-[11px]"
-    aria-label={isEs ? "Algoritmos populares" : "Popular algorithms"}
+    aria-label={isDe ? "Beliebte Algorithmen" : "Popular algorithms"}
   >
     <span class="text-neutral-700 shrink-0">
-      {isEs ? "Popular:" : "Popular:"}
+      {isDe ? "Beliebt:" : "Popular:"}
     </span>
     {
       popular.map((algo, index) => (
@@ -108,8 +108,8 @@ const popular = POPULAR_IDS.map((id) => algorithmCatalog.find((a) => a.id === id
 
   <p class="sr-only">
     {
-      isEs
-        ? `${t.algorithmsCount.replace("{count}", String(algorithmCatalog.length))} con visualización interactiva paso a paso.`
+      isDe
+        ? `${t.algorithmsCount.replace("{count}", String(algorithmCatalog.length))} mit interaktiver Schritt-für-Schritt-Visualisierung.`
         : `${t.algorithmsCount.replace("{count}", String(algorithmCatalog.length))} with interactive step-by-step visualizations.`
     }
   </p>

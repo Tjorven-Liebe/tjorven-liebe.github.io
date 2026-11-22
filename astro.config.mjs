@@ -19,7 +19,7 @@ export default defineConfig({
         defaultLocale: 'en',
         locales: {
           en: 'en',
-          es: 'es',
+          de: 'de',
         },
       },
       serialize(item) {
@@ -27,7 +27,13 @@ export default defineConfig({
         const links = item.links ?? []
         const en = links.find((link) => link.lang === 'en')
         if (en && !links.some((link) => link.lang === 'x-default')) {
-          item.links = [...links, { ...en, lang: 'x-default' }]
+          item.links = [
+            ...links,
+            {
+              ...en,
+              lang: 'x-default',
+            },
+          ]
         }
         // Algorithm pages: last commit of their editorial content (omitted if unknown).
         const slug = new URL(item.url).pathname.split('/').filter(Boolean).at(-1)
@@ -39,7 +45,7 @@ export default defineConfig({
   ],
   i18n: {
     defaultLocale: 'en',
-    locales: ['en', 'es'],
+    locales: ['en', 'de'],
     routing: {
       prefixDefaultLocale: false,
     },

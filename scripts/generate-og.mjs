@@ -101,6 +101,7 @@ const algorithms = [
   ['interpolation-search', 'Interpolation Search', 'Searching'],
   ['bfs', 'Breadth-First Search', 'Graphs'],
   ['dfs', 'Depth-First Search', 'Graphs'],
+  ['iddfs', 'Iterative Deepening DFS', 'Graphs'],
   ['dijkstra', "Dijkstra's Algorithm", 'Graphs'],
   ['prim', "Prim's Algorithm", 'Graphs'],
   ['topological-sort', 'Topological Sort', 'Graphs'],

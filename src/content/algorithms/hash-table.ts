@@ -21,26 +21,26 @@ Time Complexity:
 Space Complexity: O(n)
 
 Applications: caches, databases, symbol tables, counting frequencies, deduplication`,
-  es: `Tabla Hash (Hash Table)
+  de: `Hash Table
 
-Una Tabla Hash mapea claves a valores usando una función hash. Proporciona tiempo casi constante O(1) para insertar, buscar y eliminar.
+A Hash Table maps keys to values using a hash function. It provides near-constant time O(1) for insert, lookup, and delete operations.
 
-Cómo funciona:
-1. Una función hash convierte la clave en un índice del arreglo
-2. El valor se almacena en ese índice (bucket)
-3. Si dos claves producen el mismo índice → colisión
+Funktionsweise:
+1. A hash function converts the key into an array index
+2. The value is stored at that index (bucket)
+3. If two keys hash to the same index → collision
 
-Manejo de colisiones (encadenamiento):
-  Cada bucket almacena una lista de entradas.
-  Múltiples claves pueden compartir el mismo bucket.
+Collision handling (chaining):
+  Each bucket stores a list of entries.
+  Multiple keys can share the same bucket.
 
-Complejidad Temporal:
-  Promedio: O(1) para set, get, delete
-  Peor:     O(n) cuando todas las claves colisionan
+Zeitkomplexität:
+  Average: O(1) for set, get, delete
+  Worst:   O(n) when all keys collide
 
-Complejidad Espacial: O(n)
+Raumkomplexität: O(n)
 
-Aplicaciones: cachés, bases de datos, tablas de símbolos, conteo de frecuencias, deduplicación`,
+Anwendungen: caches, databases, symbol tables, counting frequencies, deduplication`,
 }
 
 export default descriptions

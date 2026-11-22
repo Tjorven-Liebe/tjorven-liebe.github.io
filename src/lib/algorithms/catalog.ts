@@ -236,6 +236,13 @@ export const algorithmCatalog: AlgorithmSummary[] = [
     visualization: 'graph',
   },
   {
+    id: 'iddfs',
+    name: 'Iterative Deepening DFS',
+    category: 'Graphs',
+    difficulty: 'advanced',
+    visualization: 'graph',
+  },
+  {
     id: 'dijkstra',
     name: "Dijkstra's Algorithm",
     category: 'Graphs',

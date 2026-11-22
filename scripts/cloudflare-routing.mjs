@@ -2,8 +2,8 @@
 import { appendFile, readdir, readFile, writeFile } from 'node:fs/promises'
 import { fileURLToPath } from 'node:url'
 
-/** Every HTML route shape the site emits: `/`, `/es/`, `/:slug/`, `/es/:slug/`. */
-const HTML_ROUTES = ['/', '/:page/', '/es/:page/']
+/** Every HTML route shape the site emits: `/`, `/de/`, `/:slug/`, `/de/:slug/`. */
+const HTML_ROUTES = ['/', '/:page/', '/de/:page/']
 
 /** Build output folders that are not standalone pages. */
 const NON_PAGE_DIRS = new Set(['_astro', 'algorithm-content', 'algorithm-code', 'og'])
@@ -49,7 +49,10 @@ async function getPreloadLinks(dir) {
  */
 async function getPagePaths(dir) {
   const root = fileURLToPath(dir).replace(/\/$/, '')
-  const entries = await readdir(root, { recursive: true, withFileTypes: true })
+  const entries = await readdir(root, {
+    recursive: true,
+    withFileTypes: true,
+  })
   return entries
     .filter((entry) => entry.isFile() && entry.name === 'index.html')
     .map((entry) => entry.parentPath.slice(root.length))

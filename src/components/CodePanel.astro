@@ -65,7 +65,7 @@ const algorithmCodeHtml = initialAlgorithmId
       >
         <div class="flex items-center gap-2 text-[11px] text-neutral-600 font-mono">
           <span class="inline-block size-1.5 rounded-full bg-neutral-600 animate-pulse"></span>
-          {locale === "es" ? "Cargando código…" : "Loading code…"}
+          {locale === "de" ? "Code wird geladen…" : "Loading code…"}
         </div>
       </div>
 
@@ -79,7 +79,7 @@ const algorithmCodeHtml = initialAlgorithmId
         { hidden: initialConsole.length === 0, flex: initialConsole.length > 0 },
       ]}
       role="region"
-      aria-label={locale === "es" ? "Salida de consola" : "Console output"}
+      aria-label={locale === "de" ? "Konsolenausgabe" : "Console output"}
     >
       <div class="px-4 py-2 flex items-center gap-2 shrink-0">
         <div class="flex items-center gap-1.5">

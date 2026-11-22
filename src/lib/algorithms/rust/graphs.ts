@@ -44,6 +44,36 @@ fn explore(graph: &HashMap<i32, Vec<i32>>, node: i32,
     }
 }`),
 
+  iddfs:
+    annotated(`fn iddfs(graph: &HashMap<i32, Vec<i32>>, start: i32, target: i32, max_depth: i32) -> bool {
+    for limit in 0..=max_depth {  //@2
+        let mut visited: HashSet<i32> = HashSet::new();
+        if dls(graph, start, target, limit, &mut visited) {  //@4
+            return true;  //@5
+        }
+    }
+    false  //@8
+}
+
+fn dls(graph: &HashMap<i32, Vec<i32>>, node: i32, target: i32, limit: i32, visited: &mut HashSet<i32>) -> bool {
+    visited.insert(node);
+    if node == target {  //@12
+        return true;
+    }
+    if limit <= 0 {  //@14
+        return false;
+    }
+
+    for &neighbor in &graph[&node] {
+        if !visited.contains(&neighbor) {  //@16
+            if dls(graph, neighbor, target, limit - 1, visited) {
+                return true;
+            }
+        }
+    }
+    false  //@18
+}`),
+
   dijkstra: annotated(`fn dijkstra(graph: &[Vec<(usize, i32)>], start: usize) -> Vec<i32> {  //@1
     let n = graph.len();
     let mut dist = vec![i32::MAX; n];

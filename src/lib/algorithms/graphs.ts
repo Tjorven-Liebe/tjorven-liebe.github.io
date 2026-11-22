@@ -180,7 +180,7 @@ const dfs: Algorithm = {
         currentEdge: null,
         stack: [],
       },
-      description: d(locale, 'Starting DFS from node 0.', 'Iniciando DFS desde el nodo 0.'),
+      description: d(locale, 'Starting DFS from node 0.', 'Starte DFS von Knoten 0.'),
       codeLine: 16,
       variables: { start: 0, visited: '{}', result: '[]' },
     })
@@ -951,4 +951,295 @@ const topologicalSort: Algorithm = {
   },
 }
 
-export { bfs, dfs, dijkstra, prim, topologicalSort }
+// ============================================================
+// ITERATIVE DEEPENING DEPTH-FIRST SEARCH (IDDFS)
+// ============================================================
+const iddfs: Algorithm = {
+  id: 'iddfs',
+  name: 'Iterative Deepening DFS',
+  category: 'Graphs',
+  difficulty: 'advanced',
+  visualization: 'graph',
+  code: `function iddfs(graph, start, target, maxDepth) {
+  for (let limit = 0; limit <= maxDepth; limit++) {
+    const visited = new Set();
+    if (dls(start, target, limit, visited)) {
+      return true;
+    }
+  }
+  return false;
+}
+
+function dls(node, target, limit, visited) {
+  visited.add(node);
+  if (node === target) return true;
+  if (limit <= 0) return false;
+
+  for (const neighbor of graph[node]) {
+    if (!visited.has(neighbor)) {
+      if (dls(neighbor, target, limit - 1, visited)) {
+        return true;
+      }
+    }
+  }
+  return false;
+}`,
+
+  generateSteps(locale = 'en') {
+    const steps: Step[] = []
+    const target = 6
+    const maxDepth = 3
+
+    steps.push({
+      graph: {
+        nodes: graphNodes,
+        edges: graphEdges,
+        visitedNodes: [],
+        currentNode: 0,
+        visitedEdges: [],
+        currentEdge: null,
+        stack: [],
+      },
+      description: d(
+        locale,
+        `Starting IDDFS from node 0 looking for target node ${target} (max depth: ${maxDepth}).`,
+        `Starte IDDFS von Knoten 0 auf der Suche nach Zielknoten ${target} (maximale Tiefe: ${maxDepth}).`,
+      ),
+      codeLine: 1,
+      variables: { start: 0, target, maxDepth, limit: 0 },
+    })
+
+    let found = false
+
+    for (let limit = 0; limit <= maxDepth; limit++) {
+      const visitedInIteration = new Set<number>()
+      const iterationVisitedNodes: number[] = []
+      const iterationVisitedEdges: [number, number][] = []
+      const stack: number[] = []
+
+      steps.push({
+        graph: {
+          nodes: graphNodes,
+          edges: graphEdges,
+          visitedNodes: [],
+          currentNode: 0,
+          visitedEdges: [],
+          currentEdge: null,
+          stack: [],
+        },
+        description: d(
+          locale,
+          `Starting iteration with depth limit = ${limit}.`,
+          `Starte Iteration mit Tiefenlimit = ${limit}.`,
+        ),
+        codeLine: 2,
+        variables: { limit, target, depth: 0, stack: '[]' },
+      })
+
+      function dlsHelper(node: number, currentDepth: number): boolean {
+        visitedInIteration.add(node)
+        iterationVisitedNodes.push(node)
+        stack.push(node)
+
+        const isTarget = node === target
+        steps.push({
+          graph: {
+            nodes: graphNodes,
+            edges: graphEdges,
+            visitedNodes: [...iterationVisitedNodes],
+            currentNode: node,
+            visitedEdges: [...iterationVisitedEdges],
+            currentEdge: null,
+            stack: [...stack],
+          },
+          description: isTarget
+            ? d(
+                locale,
+                `Found target node ${target} at depth ${currentDepth}!`,
+                `Zielknoten ${target} bei Tiefe ${currentDepth} gefunden!`,
+              )
+            : d(
+                locale,
+                `Visiting node ${node} at depth ${currentDepth} (limit = ${limit}).`,
+                `Besuche Knoten ${node} bei Tiefe ${currentDepth} (Limit = ${limit}).`,
+              ),
+          codeLine: 12,
+          variables: {
+            node,
+            currentDepth,
+            limit,
+            stack: `[${stack.join(', ')}]`,
+            target,
+          },
+        })
+
+        if (isTarget) {
+          return true
+        }
+
+        if (currentDepth >= limit) {
+          steps.push({
+            graph: {
+              nodes: graphNodes,
+              edges: graphEdges,
+              visitedNodes: [...iterationVisitedNodes],
+              currentNode: node,
+              visitedEdges: [...iterationVisitedEdges],
+              currentEdge: null,
+              stack: [...stack],
+            },
+            description: d(
+              locale,
+              `Depth limit ${limit} reached at node ${node}. Cannot explore deeper this iteration.`,
+              `Tiefenlimit ${limit} bei Knoten ${node} erreicht. In dieser Iteration kann nicht tiefer gesucht werden.`,
+            ),
+            codeLine: 14,
+            variables: {
+              node,
+              currentDepth,
+              limit,
+              stack: `[${stack.join(', ')}]`,
+            },
+          })
+          stack.pop()
+          return false
+        }
+
+        for (const neighbor of graphAdj[node]) {
+          if (!visitedInIteration.has(neighbor)) {
+            iterationVisitedEdges.push([node, neighbor])
+
+            steps.push({
+              graph: {
+                nodes: graphNodes,
+                edges: graphEdges,
+                visitedNodes: [...iterationVisitedNodes],
+                currentNode: node,
+                visitedEdges: [...iterationVisitedEdges],
+                currentEdge: [node, neighbor],
+                stack: [...stack],
+              },
+              description: d(
+                locale,
+                `Exploring edge ${node} → ${neighbor} (depth ${currentDepth + 1} <= limit ${limit})`,
+                `Untersuche Kante ${node} → ${neighbor} (Tiefe ${currentDepth + 1} <= Limit ${limit})`,
+              ),
+              codeLine: 16,
+              variables: {
+                node,
+                neighbor,
+                depth: currentDepth + 1,
+                limit,
+                stack: `[${stack.join(', ')}]`,
+              },
+            })
+
+            if (dlsHelper(neighbor, currentDepth + 1)) {
+              return true
+            }
+          }
+        }
+
+        stack.pop()
+        if (stack.length > 0) {
+          steps.push({
+            graph: {
+              nodes: graphNodes,
+              edges: graphEdges,
+              visitedNodes: [...iterationVisitedNodes],
+              currentNode: stack[stack.length - 1],
+              visitedEdges: [...iterationVisitedEdges],
+              currentEdge: null,
+              stack: [...stack],
+            },
+            description: d(
+              locale,
+              `Backtracking to node ${stack[stack.length - 1]}`,
+              `Backtracking zu Knoten ${stack[stack.length - 1]}`,
+            ),
+            codeLine: 18,
+            variables: {
+              node,
+              stack: `[${stack.join(', ')}]`,
+              limit,
+            },
+          })
+        }
+
+        return false
+      }
+
+      if (dlsHelper(0, 0)) {
+        found = true
+        steps.push({
+          graph: {
+            nodes: graphNodes,
+            edges: graphEdges,
+            visitedNodes: [...iterationVisitedNodes],
+            currentNode: target,
+            visitedEdges: [...iterationVisitedEdges],
+            currentEdge: null,
+            stack: [...stack],
+          },
+          description: d(
+            locale,
+            `IDDFS successfully found target node ${target} at depth limit ${limit}! Path: ${stack.join(' → ')}`,
+            `IDDFS hat Zielknoten ${target} bei Tiefenlimit ${limit} erfolgreich gefunden! Pfad: ${stack.join(' → ')}`,
+          ),
+          codeLine: 5,
+          variables: {
+            target,
+            limit,
+            path: `[${stack.join(', ')}]`,
+            result: 'true',
+          },
+        })
+        break
+      } else {
+        steps.push({
+          graph: {
+            nodes: graphNodes,
+            edges: graphEdges,
+            visitedNodes: [...iterationVisitedNodes],
+            currentNode: null,
+            visitedEdges: [...iterationVisitedEdges],
+            currentEdge: null,
+            stack: [],
+          },
+          description: d(
+            locale,
+            `Depth limit ${limit} exhausted without finding target ${target}. Incrementing depth limit.`,
+            `Tiefenlimit ${limit} ausgeschöpft, ohne Ziel ${target} zu finden. Tiefenlimit wird erhöht.`,
+          ),
+          codeLine: 2,
+          variables: { limit, target, result: 'false' },
+        })
+      }
+    }
+
+    if (!found) {
+      steps.push({
+        graph: {
+          nodes: graphNodes,
+          edges: graphEdges,
+          visitedNodes: [],
+          currentNode: null,
+          visitedEdges: [],
+          currentEdge: null,
+          stack: [],
+        },
+        description: d(
+          locale,
+          `IDDFS complete. Target node ${target} not found within max depth ${maxDepth}.`,
+          `IDDFS abgeschlossen. Zielknoten ${target} innerhalb der maximalen Tiefe ${maxDepth} nicht gefunden.`,
+        ),
+        codeLine: 8,
+        variables: { target, maxDepth, result: 'false' },
+      })
+    }
+
+    return steps
+  },
+}
+
+export { bfs, dfs, iddfs, dijkstra, prim, topologicalSort }

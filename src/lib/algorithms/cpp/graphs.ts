@@ -46,6 +46,31 @@ void explore(map<int, vector<int>>& graph, int node,
     }
 }`),
 
+  iddfs: annotated(`bool iddfs(map<int, vector<int>>& graph, int start, int target, int maxDepth) {
+    for (int limit = 0; limit <= maxDepth; limit++) {  //@2
+        set<int> visited;
+        if (dls(graph, start, target, limit, visited)) {  //@4
+            return true;  //@5
+        }
+    }
+    return false;  //@8
+}
+
+bool dls(map<int, vector<int>>& graph, int node, int target, int limit, set<int>& visited) {
+    visited.insert(node);
+    if (node == target) return true;  //@12
+    if (limit <= 0) return false;  //@14
+
+    for (int neighbor : graph[node]) {
+        if (!visited.count(neighbor)) {  //@16
+            if (dls(graph, neighbor, target, limit - 1, visited)) {
+                return true;
+            }
+        }
+    }
+    return false;  //@18
+}`),
+
   dijkstra:
     annotated(`vector<int> dijkstra(vector<vector<pair<int, int>>>& graph, int start) {  //@1
     int n = graph.size();

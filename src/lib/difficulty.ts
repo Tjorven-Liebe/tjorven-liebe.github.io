@@ -10,19 +10,19 @@ interface DifficultyPresentation {
 
 export const difficultyPresentation = {
   easy: {
-    label: { en: 'Easy', es: 'Fácil' },
+    label: { en: 'Easy', de: 'Einfach' },
     color: 'text-emerald-400',
     background: 'bg-emerald-400/10 border-emerald-400/20',
     dot: 'bg-emerald-400',
   },
   intermediate: {
-    label: { en: 'Intermediate', es: 'Intermedio' },
+    label: { en: 'Intermediate', de: 'Mittel' },
     color: 'text-amber-400',
     background: 'bg-amber-400/10 border-amber-400/20',
     dot: 'bg-amber-400',
   },
   advanced: {
-    label: { en: 'Advanced', es: 'Avanzado' },
+    label: { en: 'Advanced', de: 'Fortgeschritten' },
     color: 'text-red-400',
     background: 'bg-red-400/10 border-red-400/20',
     dot: 'bg-red-400',

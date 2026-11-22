@@ -33,8 +33,8 @@ export const GET: APIRoute = async ({ site }) => {
     '',
     `> ${t.siteDescription}`,
     '',
-    'Each page has an animated step-by-step visualization, an explanation with time and space complexity, and source code in JavaScript, Python, Java, C++ and Rust. Every page is also available in Spanish under `/es/` (for example ' +
-      `${url('/es/bubble-sort/')}).`,
+    'Each page has an animated step-by-step visualization, an explanation with time and space complexity, and source code in JavaScript, Python, Java, C++ and Rust. Every page is also available in German under `/de/` (for example ' +
+      `${url('/de/bubble-sort/')}).`,
     '',
     ...sections.flatMap((section) => [section, '']),
   ].join('\n')

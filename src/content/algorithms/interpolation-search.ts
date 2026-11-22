@@ -24,29 +24,29 @@ Properties:
   - Can degrade to O(n) for skewed distributions
 
 Interpolation Search can be significantly faster than Binary Search when data is uniformly distributed, as it makes better guesses about where the target might be.`,
-  es: `Interpolation Search (Búsqueda por Interpolación)
+  de: `Interpolation Search
 
-Interpolation Search es una variante mejorada de Binary Search para datos ordenados uniformemente distribuidos. En lugar de ir siempre al medio, estima la posición del objetivo basándose en su valor.
+Interpolation Search is an improved variant of Binary Search for uniformly distributed sorted data. Instead of always going to the middle, it estimates the position of the target based on its value.
 
-Cómo funciona:
-1. Estimar posición: pos = low + ((objetivo - arr[low]) × (high - low)) / (arr[high] - arr[low])
-2. Si arr[pos] es igual al objetivo, retornar pos
-3. Si arr[pos] < objetivo, buscar en la porción derecha
-4. Si arr[pos] > objetivo, buscar en la porción izquierda
+Funktionsweise:
+1. Estimate position: pos = low + ((target - arr[low]) × (high - low)) / (arr[high] - arr[low])
+2. If arr[pos] equals target, return pos
+3. If arr[pos] < target, search right portion
+4. If arr[pos] > target, search left portion
 
-Complejidad Temporal:
-  Mejor:    O(1)
-  Promedio: O(log log n) — para distribución uniforme
-  Peor:     O(n) — para distribución no uniforme
+Zeitkomplexität:
+  Best:    O(1)
+  Average: O(log log n) — for uniform distribution
+  Worst:   O(n) — for non-uniform distribution
 
-Complejidad Espacial: O(1)
+Raumkomplexität: O(1)
 
-Propiedades:
-  - Requiere arreglo ordenado
-  - Mejor para datos uniformemente distribuidos
-  - Puede degradarse a O(n) para distribuciones sesgadas
+Eigenschaften:
+  - Requires sorted array
+  - Best for uniformly distributed data
+  - Can degrade to O(n) for skewed distributions
 
-Interpolation Search puede ser significativamente más rápida que Binary Search cuando los datos están uniformemente distribuidos, ya que hace mejores estimaciones sobre dónde podría estar el objetivo.`,
+Interpolation Search can be significantly faster than Binary Search when data is uniformly distributed, as it makes better guesses about where the target might be.`,
 }
 
 export default descriptions

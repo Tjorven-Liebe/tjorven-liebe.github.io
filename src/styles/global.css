@@ -3,6 +3,15 @@
 /* Fonts are subset to the Latin characters this site actually renders.
    Regenerate with `pnpm fonts:subset` (sources live in `fonts-src/`). */
 
+/* Roboto — local copy from Google Fonts */
+@font-face {
+  font-family: 'Roboto';
+  src: url('../assets/fonts/roboto/Roboto-Regular.woff2') format('woff2');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
 /* Geist Mono — variable weight, for the code viewer */
 @font-face {
   font-family: 'Geist Mono';
@@ -12,7 +21,7 @@
   font-display: swap;
 }
 
-/* Geist Pixel Square — body text and headings */
+/* Geist Pixel Square — fallback/pixel font */
 @font-face {
   font-family: 'Geist Pixel Square';
   src: url('../assets/fonts/GeistPixel-Square.woff2') format('woff2');
@@ -62,9 +71,9 @@
 }
 
 @theme {
-  --font-sans: 'Geist Pixel Square', system-ui, -apple-system, sans-serif;
+  --font-sans: 'Roboto', system-ui, -apple-system, sans-serif;
   --font-mono: 'Geist Mono', ui-monospace, monospace;
-  --font-heading: 'Geist Pixel Square', system-ui, sans-serif;
+  --font-heading: 'Roboto', system-ui, sans-serif;
 }
 
 /* The app predates semantic color tokens. Keep the dark palette intact while

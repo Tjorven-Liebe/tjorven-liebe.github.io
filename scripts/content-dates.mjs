@@ -11,7 +11,12 @@ const CONTENT_DIR = 'src/content/algorithms'
 let cache
 
 /** @param {string[]} args */
-const git = (args) => execFileSync('git', args, { cwd: root, encoding: 'utf8', stdio: 'pipe' })
+const git = (args) =>
+  execFileSync('git', args, {
+    cwd: root,
+    encoding: 'utf8',
+    stdio: 'pipe',
+  })
 
 /**
  * Last commit date (YYYY-MM-DD) of each algorithm's editorial content

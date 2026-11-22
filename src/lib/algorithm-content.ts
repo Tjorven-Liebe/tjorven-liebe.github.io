@@ -31,9 +31,9 @@ export function getAlgorithmMetaTitle(
   const name = firstLine || fallbackName
   const conciseName = name.split(' (')[0].trim()
   // Keyword-first titles; brand omitted so SERP focus stays on the algorithm.
-  if (locale === 'es') {
-    const title = `${conciseName} — Visualizador de algoritmos`
-    return title.length <= 60 ? title : `${conciseName} — Visualizador`
+  if (locale === 'de') {
+    const title = `${conciseName} — Algorithmen-Visualisierer`
+    return title.length <= 60 ? title : `${conciseName} — Visualisierer`
   }
   const title = `${conciseName} — Algorithm Visualizer`
   return title.length <= 60 ? title : `${conciseName} Visualizer`
@@ -45,8 +45,8 @@ export function getAlgorithmMetaDescription(locale: Locale, description: string)
   const content = paragraphs.length > 1 ? paragraphs[1] : paragraphs[0]
   const cleaned = content.replace(/\n/g, ' ').replace(/\s+/g, ' ').trim()
   const suffix =
-    locale === 'es'
-      ? ' Visualización interactiva paso a paso.'
+    locale === 'de'
+      ? ' Kostenlose interaktive Schritt-für-Schritt-Visualisierung.'
       : ' Free interactive step-by-step visualization.'
 
   const withSuffix =

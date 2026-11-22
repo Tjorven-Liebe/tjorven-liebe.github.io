@@ -26,31 +26,31 @@ Properties:
   - Efficient for integers and strings
 
 Radix Sort can outperform comparison-based sorts when the number of digits is small relative to log(n).`,
-  es: `Radix Sort (Ordenamiento por Base)
+  de: `Radix Sort
 
-Radix Sort ordena números dígito a dígito, desde el dígito menos significativo al más significativo (LSD Radix Sort). Usa un ordenamiento estable (como Counting Sort) como subrutina.
+Radix Sort sorts numbers digit by digit, from the least significant digit to the most significant (LSD Radix Sort). It uses a stable sort (like Counting Sort) as a subroutine.
 
-Cómo funciona:
-1. Encontrar el número máximo para determinar la cantidad de dígitos
-2. Para cada posición de dígito (unidades, decenas, centenas, ...):
-   a. Ordenar el arreglo basándose en el dígito actual usando un ordenamiento estable
-3. Después de procesar todos los dígitos, el arreglo está ordenado
+Funktionsweise:
+1. Find the maximum number to determine the number of digits
+2. For each digit position (ones, tens, hundreds, ...):
+   a. Sort the array based on the current digit using a stable sort
+3. After processing all digits, the array is sorted
 
-Complejidad Temporal:
-  Mejor:    O(d × (n + k))
-  Promedio: O(d × (n + k))
-  Peor:     O(d × (n + k))
-  donde d = número de dígitos, k = base (10 para decimal)
+Zeitkomplexität:
+  Best:    O(d × (n + k))
+  Average: O(d × (n + k))
+  Worst:   O(d × (n + k))
+  where d = number of digits, k = base (10 for decimal)
 
-Complejidad Espacial: O(n + k)
+Raumkomplexität: O(n + k)
 
-Propiedades:
-  - Ordenamiento estable
-  - No es in-place
-  - No basado en comparaciones
-  - Eficiente para enteros y cadenas
+Eigenschaften:
+  - Stable sort
+  - Not in-place
+  - Not comparison-based
+  - Efficient for integers and strings
 
-Radix Sort puede superar a los ordenamientos basados en comparaciones cuando el número de dígitos es pequeño respecto a log(n).`,
+Radix Sort can outperform comparison-based sorts when the number of digits is small relative to log(n).`,
 }
 
 export default descriptions

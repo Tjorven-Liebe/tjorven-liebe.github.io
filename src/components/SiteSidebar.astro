@@ -24,7 +24,7 @@ interface Props {
 const { locale, selectedId = null } = Astro.props
 const t = translations[locale]
 const totalCount = catalogCategories.reduce((sum, c) => sum + c.algorithms.length, 0)
-const clearLabel = locale === "es" ? "Limpiar búsqueda" : "Clear search"
+const clearLabel = locale === "de" ? "Suche leeren" : "Clear search"
 const panelWidth = `${SIDEBAR_MAX_WIDTH}px`
 ---
 

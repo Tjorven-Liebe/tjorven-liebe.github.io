@@ -26,31 +26,31 @@ Properties:
   - In-place
 
 Mainly used for educational purposes. For production, prefer Quick Sort or Merge Sort.`,
-  es: `Bubble Sort (Ordenamiento Burbuja)
+  de: `Bubble Sort
 
-Bubble Sort es un algoritmo de ordenamiento simple basado en comparaciones. Recorre repetidamente la lista, compara elementos adyacentes y los intercambia si están en el orden incorrecto.
+Bubble Sort is a simple comparison-based sorting algorithm. It repeatedly steps through the list, compares adjacent elements, and swaps them if they are in the wrong order.
 
-El algoritmo recibe su nombre porque los elementos más pequeños "burbujean" hacia la parte superior de la lista con cada pasada.
+The algorithm gets its name because smaller elements "bubble" to the top of the list with each pass.
 
-Cómo funciona:
-1. Compara cada par de elementos adyacentes
-2. Intercámbialos si el elemento izquierdo es mayor
-3. Después de cada pasada, el elemento más grande no ordenado queda en su posición final
-4. Repite hasta que no se necesiten más intercambios
+Funktionsweise:
+1. Compare each pair of adjacent elements
+2. Swap them if the left element is greater
+3. After each pass, the largest unsorted element settles in its final position
+4. Repeat until no swaps are needed
 
-Complejidad Temporal:
-  Mejor:    O(n) — ya ordenado
-  Promedio: O(n²)
-  Peor:     O(n²)
+Zeitkomplexität:
+  Best:    O(n) — already sorted
+  Average: O(n²)
+  Worst:   O(n²)
 
-Complejidad Espacial: O(1) — in-place
+Raumkomplexität: O(1) — in-place
 
-Propiedades:
-  - Ordenamiento estable
-  - Adaptativo
+Eigenschaften:
+  - Stable sort
+  - Adaptive
   - In-place
 
-Se usa principalmente con fines educativos. En producción, es preferible Quick Sort o Merge Sort.`,
+Mainly used for educational purposes. For production, prefer Quick Sort or Merge Sort.`,
 }
 
 export default descriptions

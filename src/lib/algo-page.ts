@@ -333,8 +333,8 @@ export function initAlgoPage(root: HTMLElement): () => void {
     }
     document.title =
       pageContent?.pageTitle ||
-      (locale === 'es'
-        ? `${algo.name} — Visualizador de algoritmos`
+      (locale === 'de'
+        ? `${algo.name} — Algorithmen-Visualisierer`
         : `${algo.name} — Algorithm Visualizer`)
     updateMetaDescription(pageContent?.metaDescription || t.siteDescription)
     publishChrome()

@@ -107,7 +107,10 @@ if (dryRun) {
 }
 
 const wrangler = join(root, 'node_modules', '.bin', 'wrangler')
-const deploy = spawnSync(wrangler, ['deploy'], { cwd: root, stdio: 'inherit' })
+const deploy = spawnSync(wrangler, ['deploy'], {
+  cwd: root,
+  stdio: 'inherit',
+})
 if (deploy.status !== 0) process.exit(deploy.status ?? 1)
 
 if (changed.length > 0) {

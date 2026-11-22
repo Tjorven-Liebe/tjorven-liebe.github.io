@@ -45,6 +45,32 @@ void explore(Map<Integer, List<Integer>> graph, int node,
     }
 }`),
 
+  iddfs:
+    annotated(`boolean iddfs(Map<Integer, List<Integer>> graph, int start, int target, int maxDepth) {
+    for (int limit = 0; limit <= maxDepth; limit++) {  //@2
+        Set<Integer> visited = new HashSet<>();
+        if (dls(graph, start, target, limit, visited)) {  //@4
+            return true;  //@5
+        }
+    }
+    return false;  //@8
+}
+
+boolean dls(Map<Integer, List<Integer>> graph, int node, int target, int limit, Set<Integer> visited) {
+    visited.add(node);
+    if (node == target) return true;  //@12
+    if (limit <= 0) return false;  //@14
+
+    for (int neighbor : graph.get(node)) {
+        if (!visited.contains(neighbor)) {  //@16
+            if (dls(graph, neighbor, target, limit - 1, visited)) {
+                return true;
+            }
+        }
+    }
+    return false;  //@18
+}`),
+
   dijkstra: annotated(`int[] dijkstra(List<List<int[]>> graph, int start) {  //@1
     int n = graph.size();
     int[] dist = new int[n];

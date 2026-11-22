@@ -41,9 +41,9 @@ export function parseAlgorithmDescription(description: string): ParsedAlgorithmD
 
 /** Extract a short complexity blurb if present in the description. */
 export function extractComplexityBlurb(description: string, locale: Locale): string | null {
-  const isEs = locale === 'es'
-  const timeLabel = isEs ? 'Complejidad Temporal' : 'Time Complexity'
-  const spaceLabel = isEs ? 'Complejidad Espacial' : 'Space Complexity'
+  const isDe = locale === 'de'
+  const timeLabel = isDe ? 'Zeitkomplexität' : 'Time Complexity'
+  const spaceLabel = isDe ? 'Raumkomplexität' : 'Space Complexity'
 
   const timeIdx = description.indexOf(timeLabel)
   const spaceIdx = description.indexOf(spaceLabel)
@@ -52,21 +52,21 @@ export function extractComplexityBlurb(description: string, locale: Locale): str
   if (timeIdx >= 0) {
     const after = description.slice(timeIdx + timeLabel.length)
     const end = after.search(
-      /\n\n|Properties|Propiedades|Mainly|Se usa|Complejidad Espacial|Space Complexity/,
+      /\n\n|Properties|Eigenschaften|Mainly|Raumkomplexität|Space Complexity/,
     )
     const block = (end >= 0 ? after.slice(0, end) : after).trim()
     const avg =
       block.match(/Average:\s*([^\n]+)/i)?.[1]?.trim() ||
-      block.match(/Promedio:\s*([^\n]+)/i)?.[1]?.trim() ||
+      block.match(/Durchschnittlicher Fall:\s*([^\n]+)/i)?.[1]?.trim() ||
       block.match(/O\([^)]+\)/)?.[0]
-    if (avg) timePart = isEs ? `Tiempo (promedio): ${avg}` : `Time (average): ${avg}`
+    if (avg) timePart = isDe ? `Zeit (Durchschnitt): ${avg}` : `Time (average): ${avg}`
   }
 
   let spacePart = ''
   if (spaceIdx >= 0) {
     const line = description.slice(spaceIdx).split('\n')[0] ?? ''
     const match = line.match(/O\([^)]+\)/)
-    if (match) spacePart = isEs ? `Espacio: ${match[0]}` : `Space: ${match[0]}`
+    if (match) spacePart = isDe ? `Raum: ${match[0]}` : `Space: ${match[0]}`
   }
 
   if (!timePart && !spacePart) return null
@@ -75,9 +75,9 @@ export function extractComplexityBlurb(description: string, locale: Locale): str
 
 function difficultyLabel(locale: Locale, difficulty: Difficulty): string {
   const map = {
-    easy: { en: 'beginner', es: 'principiante' },
-    intermediate: { en: 'intermediate', es: 'intermedio' },
-    advanced: { en: 'advanced', es: 'avanzado' },
+    easy: { en: 'beginner', de: 'Anfänger' },
+    intermediate: { en: 'intermediate', de: 'Fortgeschritten' },
+    advanced: { en: 'advanced', de: 'Experte' },
   } as const
   return map[difficulty][locale]
 }
@@ -96,27 +96,27 @@ export function buildAlgorithmFaqs(
   const related = getRelatedAlgorithms(algorithm, 3)
   const relatedNames = related.map((r) => r.name).join(', ')
 
-  if (locale === 'es') {
+  if (locale === 'de') {
     return [
       {
-        question: `¿Qué es ${name}?`,
+        question: `Was ist ${name}?`,
         answer: intro,
       },
       {
-        question: `¿Cuál es la complejidad de ${name}?`,
+        question: `Welche Komplexität hat ${name}?`,
         answer:
           complexity ??
-          `${name} se explica con visualización paso a paso, incluyendo su complejidad temporal y espacial cuando aplica.`,
+          `${name} wird mit einer Schritt-für-Schritt-Visualisierung erklärt, einschließlich Zeit- und Raumkomplexität.`,
       },
       {
-        question: `¿Para quién es este visualizador de ${name}?`,
-        answer: `La visualización de ${name} está pensada para nivel ${level}, dentro de la categoría ${category}. Ideal para estudiantes, entrevistas técnicas y repaso práctico.`,
+        question: `Für wen ist dieser ${name}-Visualisierer geeignet?`,
+        answer: `Die Visualisierung von ${name} richtet sich an das Niveau ${level} in der Kategorie ${category}. Ideal für Studenten, technische Interviews und Praxiswiederholung.`,
       },
       ...(related.length > 0
         ? [
             {
-              question: `¿Qué algoritmos relacionados hay con ${name}?`,
-              answer: `En la misma categoría (${category}) puedes explorar: ${relatedNames}. Todos tienen visualización interactiva.`,
+              question: `Welche verwandten Algorithmen gibt es zu ${name}?`,
+              answer: `In derselben Kategorie (${category}) kannst du erkunden: ${relatedNames}. Alle verfügen über eine interaktive Visualisierung.`,
             },
           ]
         : []),

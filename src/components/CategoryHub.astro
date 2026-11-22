@@ -16,7 +16,7 @@ const { locale, category } = Astro.props
 const t = translations[locale]
 const label = getCategoryName(locale, category.name)
 const intro = getCategoryIntro(locale, category.name)
-const isEs = locale === "es"
+const isDe = locale === "de"
 const categoryColor = getCategoryColor(category.name)
 const categoryIcon = categoryIconPaths[category.name]
 ---
@@ -34,7 +34,7 @@ const categoryIcon = categoryIconPaths[category.name]
       <ol class="flex flex-wrap items-center gap-1.5">
         <li>
           <a href={getHomeUrl(locale)} class="hover:text-neutral-300 transition-colors">
-            {isEs ? "Inicio" : "Home"}
+            {isDe ? "Startseite" : "Home"}
           </a>
         </li>
         <li aria-hidden="true" class="text-neutral-700">/</li>

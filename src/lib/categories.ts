@@ -46,29 +46,31 @@ export function getAllCategorySlugs(): string[] {
 /** Hub intro copy for category landing pages. */
 export function getCategoryIntro(locale: Locale, categoryName: string): string {
   const label = getCategoryName(locale, categoryName)
-  if (locale === 'es') {
+  if (locale === 'de') {
     const intros: Record<string, string> = {
       Concepts:
-        'Conceptos fundamentales de algoritmos y estructuras de datos: complejidad, patrones y técnicas que se reutilizan en casi todos los problemas.',
+        'Grundlegende Algorithmen- und Datenstruktur-Konzepte: Komplexität, Muster und Techniken, die in fast allen Problemen vorkommen.',
       'Data Structures':
-        'Estructuras de datos clásicas visualizadas paso a paso: pilas, colas, listas, tablas hash, árboles y heaps.',
+        'Klassische Datenstrukturen Schritt für Schritt visualisiert: Stacks, Queues, Listen, Hash-Tabellen, Bäume und Heaps.',
       Sorting:
-        'Algoritmos de ordenamiento comparativos y no comparativos. Compara complejidad, estabilidad y cuándo usar cada uno.',
+        'Vergleichsbasierte und nicht-vergleichsbasierte Sortieralgorithmen. Vergleiche Komplexität, Stabilität und Einsatzzwecke.',
       Searching:
-        'Búsqueda lineal, binaria y variantes sobre datos ordenados. Aprende el trade-off entre preparación y consultas.',
+        'Lineare Suche, binäre Suche und Varianten auf sortierten Daten. Verstehe den Trade-off zwischen Vorbereitung und Abfragen.',
       Graphs:
-        'Recorridos y algoritmos sobre grafos: BFS, DFS, caminos más cortos, MST y orden topológico.',
+        'Graphen-Traversierung und Algorithmen: BFS, DFS, kürzeste Pfade, minimale Spannbäume und topologische Sortierung.',
       'Dynamic Programming':
-        'Programación dinámica con ejemplos clásicos: subproblemas, memoización y tablas de DP.',
+        'Klassiker der dynamischen Programmierung: Teilprobleme, Memoisation und DP-Tabellen anschaulich dargestellt.',
       Backtracking:
-        'Exploración con retroceso: N-Reinas, Sudoku y pathfinding. Ve cómo se poda el espacio de búsqueda.',
+        'Backtracking-Erkundung: N-Damen-Problem, Sudoku und Wegfindung. Sieh, wie der Suchraum beschnitten wird.',
       'Divide and Conquer':
-        'Divide el problema, resuelve subproblemas y combina resultados. Torre de Hanoi y más.',
-      Math: 'Algoritmos matemáticos clásicos paso a paso: el algoritmo de Euclides para el máximo común divisor y la criba de Eratóstenes para encontrar primos.',
+        'Teile das Problem, löse Teilprobleme und kombiniere Ergebnisse: Türme von Hanoi und mehr.',
+      Math: 'Klassische mathematische Algorithmen: Euklidischer Algorithmus für den ggT und das Sieb des Eratosthenes für Primzahlen.',
       Compression:
-        'Compresión sin pérdida desde RLE hasta DEFLATE (gzip) y Brotli: diccionarios, entropía y los pipelines reales de la web.',
+        'Verlustfreie Kompression von RLE bis DEFLATE (gzip) und Brotli: Wörterbücher, Entropiekodierung und moderne Web-Pipelines.',
     }
-    return intros[categoryName] ?? `Explora visualizaciones interactivas de ${label.toLowerCase()}.`
+    return (
+      intros[categoryName] ?? `Entdecke interaktive Visualisierungen zu ${label.toLowerCase()}.`
+    )
   }
 
   const intros: Record<string, string> = {
@@ -96,8 +98,8 @@ export function getCategoryIntro(locale: Locale, categoryName: string): string {
 
 export function getCategoryMetaTitle(locale: Locale, categoryName: string): string {
   const label = getCategoryName(locale, categoryName)
-  return locale === 'es'
-    ? `${label} — Visualizador de algoritmos`
+  return locale === 'de'
+    ? `${label} — Algorithmen-Visualisierer`
     : `${label} — Algorithm Visualizer`
 }
 

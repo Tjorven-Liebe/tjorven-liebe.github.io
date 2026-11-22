@@ -17,7 +17,7 @@ interface Props {
 
 const locale = (Astro.props.locale ?? "en") as Locale
 const t = translations[locale]
-const ogLocale = locale === "es" ? "es_ES" : "en_US"
+const ogLocale = locale === "de" ? "de_DE" : "en_US"
 
 const {
   title = t.siteTitle,
@@ -37,12 +37,12 @@ function normalizePath(path: string) {
 }
 
 const pathname = normalizePath(Astro.url.pathname)
-const basePath = locale === "es" && pathname.startsWith("/es/")
+const basePath = locale === "de" && pathname.startsWith("/de/")
   ? pathname.slice(3) || "/"
   : pathname
 const enAlternateUrl = new URL(basePath, Astro.site).href
-const esAlternateUrl = new URL(basePath === "/" ? "/es/" : `/es${basePath}`, Astro.site).href
-const alternateOgLocale = locale === "es" ? "en_US" : "es_ES"
+const deAlternateUrl = new URL(basePath === "/" ? "/de/" : `/de${basePath}`, Astro.site).href
+const alternateOgLocale = locale === "de" ? "en_US" : "de_DE"
 
 // Prefetch same-site pages on hover/pointerdown (Chromium). Skips the SPA fragments and
 // sidebar links on algorithm pages, which swap content client-side instead of navigating.
@@ -150,7 +150,7 @@ const defaultStructuredData = {
     <meta property="og:locale" content={ogLocale} />
     <meta property="og:locale:alternate" content={alternateOgLocale} />
     <link rel="alternate" hreflang="en" href={enAlternateUrl} />
-    <link rel="alternate" hreflang="es" href={esAlternateUrl} />
+    <link rel="alternate" hreflang="de" href={deAlternateUrl} />
     <link rel="alternate" hreflang="x-default" href={enAlternateUrl} />
 
     <!-- Twitter -->
@@ -173,7 +173,7 @@ const defaultStructuredData = {
   <body class="bg-black text-gray-100 font-sans antialiased">
     <!-- Skip to main content link for keyboard/screen reader users -->
     <a href="#main-content" class="skip-link">
-      {locale === "es" ? "Ir al contenido principal" : "Skip to main content"}
+      {locale === "de" ? "Zum Hauptinhalt springen" : "Skip to main content"}
     </a>
     <slot />
     <script>

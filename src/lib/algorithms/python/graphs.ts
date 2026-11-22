@@ -35,6 +35,26 @@ export const graphsPython: Record<string, CodeImplementation> = {
     explore(start)  #@16
     return result  #@17`),
 
+  iddfs: annotated(`def iddfs(graph, start, target, max_depth):
+    for limit in range(max_depth + 1):  #@2
+        visited = set()
+        if dls(graph, start, target, limit, visited):  #@4
+            return True  #@5
+    return False  #@8
+
+def dls(graph, node, target, limit, visited):
+    visited.add(node)
+    if node == target:  #@12
+        return True
+    if limit <= 0:  #@14
+        return False
+
+    for neighbor in graph[node]:
+        if neighbor not in visited:  #@16
+            if dls(graph, neighbor, target, limit - 1, visited):
+                return True
+    return False  #@18`),
+
   dijkstra: annotated(`def dijkstra(graph, start):  #@1
     n = len(graph)
     dist = [float('inf')] * n
